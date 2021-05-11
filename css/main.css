@@ -1,0 +1,61 @@
+* {
+  height: 100%;
+  border: 0;
+  margin: 0;
+}
+
+body {
+  background: linear-gradient(to top, #3f51b1 0%, #5a55ae 13%, #7b5fac 25%, #8f6aae 38%, #a86aa4 50%, #cc6b8e 62%, #f18271 75%, #f3a469 87%, #f7c978 100%) fixed no-repeat;
+}
+
+.flexcon {
+  display: flex;
+}
+.flexcon.board {
+  justify-content: center;
+}
+
+.gridcon {
+  display: grid;
+}
+.gridcon#gamearea {
+  height: 500px;
+  width: 800px;
+  background-color: black;
+  border: 5px solid darkblue;
+  position: relative;
+  grid-template-rows: repeat(80, 1fr);
+  grid-template-columns: repeat(50, 1fr);
+}
+
+.header {
+  height: 40px;
+}
+
+@keyframes snakeMovement {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+#snakey {
+  height: 15px;
+  width: 15px;
+  background-color: red;
+  position: absolute;
+  transition: transform 1s linear;
+}
+
+#snakey:hover {
+  transform: translateX(100px);
+}
+
+#gameboard {
+  background-color: black;
+  width: 600px;
+  height: 600px;
+}
+
+/*# sourceMappingURL=main.css.map */
