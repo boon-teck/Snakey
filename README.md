@@ -23,6 +23,21 @@ CSS (SASS)
 
 Javascript (Web APIs - DOM, event)
 
+# MVP
+To create a working snake game with scores
+
+# Things left to do
+Add snake body (i think it can be done with an array but not sure how to go about it yet. Possibly unshift the food x and y axis into the array)
+
+
+Add score functionality.
+
+Add more features.
+
+# Things fixed since first commit.
+Fixed window scrolling when clicking arrow down and arrow up button.
+
+
 # Might be added features
 Guards for food to prevent Snakey from stealing?
 
