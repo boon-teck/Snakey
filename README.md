@@ -24,7 +24,7 @@ CSS (SASS)
 Javascript (Web APIs - DOM, event)
 
 # Might be added features
-Guards for food to prevent the snake from stealing?
+Guards for food to prevent Snakey from stealing?
 
 Multiplayer.
 
