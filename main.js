@@ -9,13 +9,27 @@ let tileSize = canvas.width/numberOfTiles // 600/30 = 20 width so 20 by 20 for a
 let snakeHeadXAxis = 10; //go up to 600?
 let snakeHeadYAxis = 10;
 let snakeSpeed = 5;
+let snakeBody = [];
+
+//my object is here
+class SnakeBodyAxis {
+    constructor(x,y) {
+    this.x = x;
+    this.y = y;
+}}
+let snakeLength = 4;
 
 function gameLogic() { //move-drawhead-remove-delay doesnt work while remove-move-drawhead works)
-    clearSnake()
-    spawnFood()
     snakeMovement();
-    snakeHead();
+
+
+    clearSnake();
+    spawnFood();
     ateFood();
+    console.log('X', snakeHeadXAxis,'y',snakeHeadYAxis)
+    createBody();  //DOES NOT WORK YET
+    snakeHead();
+
     //need to clear the snake trail here
     //spawnFood here -- keep spawning even without eating -- Need to invoke only once and invoke another time after eating
 
@@ -25,12 +39,34 @@ function gameLogic() { //move-drawhead-remove-delay doesnt work while remove-mov
 //Draw SnakeHead
 function snakeHead() {
     ctx.fillStyle = 'red';
-        ctx.fillRect(snakeHeadXAxis*numberOfTiles, snakeHeadYAxis*numberOfTiles, tileSize, tileSize)
+    ctx.fillRect(snakeHeadXAxis*numberOfTiles, snakeHeadYAxis*numberOfTiles, tileSize, tileSize)
+}
+
+
+function createBody() {
+    ctx.fillStyle = 'blue';
+    let snakeSectionObj = new SnakeBodyAxis(snakeHeadXAxis, snakeHeadYAxis)//An object of old axis
+    //for length of array, draw rect when I move it
+    for (let j=0; j < snakeBody.length; j++) {//snake length accessing the array of object
+        console.log(`test${j}`)
+        let snakeSection = snakeBody[j]; //access object in array position
+        console.log(snakeSection)
+        ctx.fillRect(snakeSection.x * numberOfTiles,snakeSection.y * numberOfTiles, tileSize, tileSize)
+    }
+    // need to limit length of snake to length
+        // console.log('test', snakeSectionObj)
+        snakeBody.push(snakeSectionObj); //push object to back of the array
+    if (snakeBody.length > snakeLength) {
+        snakeBody.shift();
+        // console.log('array', snakeBody); //Now it keep adding to array though without eatingz
+        // console.log('first array', snakeBody[0].x);
+    }
 }
 
 //move snake
 let moveInDirX = 0;
 let moveInDirY = 0;
+
 function snakeMovement() {
     snakeHeadXAxis += moveInDirX;
     snakeHeadYAxis += moveInDirY;
@@ -43,20 +79,28 @@ function keyBoardEvent(key){
     // console.log('test', key)
     if(key.keyCode === 39){
         // console.log("HI")
-        moveInDirX = 1
-        moveInDirY = 0
+        if (!(moveInDirX > 0 || moveInDirX < 0)) {
+            moveInDirX = 1
+            moveInDirY = 0
+        }
     }
     if(key.keyCode === 37){
-        moveInDirX = -1
-        moveInDirY = 0
+        if (!(moveInDirX > 0 || moveInDirX < 0)) {
+            moveInDirX = -1
+            moveInDirY = 0
+        }
     }
     if(key.keyCode === 38){
-        moveInDirY = -1
-        moveInDirX = 0
+        if(!(moveInDirY > 0 || moveInDirY < 0)) {
+            moveInDirY = -1
+            moveInDirX = 0
+        }
     }
     if(key.keyCode === 40){
-        moveInDirY = 1
-        moveInDirX = 0
+        if(!(moveInDirY >0 || moveInDirY < 0)) {
+            moveInDirY = 1
+            moveInDirX = 0
+        }
     }
 }
 
@@ -77,6 +121,7 @@ let foodYAxis = Math.floor(Math.random() * (numberOfTiles-1));
 //maybe take out the Math random from inside the function
 //ok for some reason this solution works
 
+
 function spawnFood() {
     ctx.fillStyle = 'Orange';
     ctx.fillRect(foodXAxis*numberOfTiles,foodYAxis*numberOfTiles, foodSize, foodSize)
@@ -87,8 +132,15 @@ function ateFood() {
         // spawnFood() //doesnt work
         foodXAxis = Math.floor(Math.random() * (numberOfTiles-1)) //1-29 tiles
         foodYAxis = Math.floor(Math.random() * (numberOfTiles-1))
+        snakeLength += 1;
+        // console.log(snakeHeadXAxis,snakeHeadYAxis)
     }
+    // console.log(foodXAxis,foodYAxis)
 }
+
+
+
+
 //test -- remove functionality of scrolling with keyboard (from online)
 var keys = {};
 window.addEventListener("keydown",
