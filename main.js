@@ -21,11 +21,10 @@ let snakeLength = 2;
 
 function gameLogic() { //move-drawhead-remove-delay doesnt work while remove-move-drawhead works)
     snakeMovement();
-
+    endGame();
     clearSnake();
     spawnFood();
     ateFood();
-    console.log('X', snakeHeadXAxis,'y',snakeHeadYAxis)
     createBody();  //DOES NOT WORK YET
     snakeHead();
 
@@ -47,16 +46,14 @@ function createBody() {
     let snakeSectionObj = new SnakeBodyAxis(snakeHeadXAxis, snakeHeadYAxis)//An object of old axis
     //for length of array, draw rect when I move it
     for (let j=0; j < snakeBody.length; j++) {//snake length accessing the array of object
-        console.log(`test${j}`)
         let snakeSection = snakeBody[j]; //access object in array position
-        console.log(snakeSection)
         ctx.fillRect(snakeSection.x * numberOfTiles,snakeSection.y * numberOfTiles, tileSize, tileSize)
     }
     // need to limit length of snake to length
-        // console.log('test', snakeSectionObj)
-        snakeBody.push(snakeSectionObj); //push object to back of the array
+    //     console.log('test', snakeSectionObj)
+        snakeBody.unshift(snakeSectionObj); //push object to front of the array
     if (snakeBody.length > snakeLength) {
-        snakeBody.shift();
+        snakeBody.pop(); //remove first item away since we add to the front work also with push and shift i think
         // console.log('array', snakeBody); //Now it keep adding to array though without eatingz
         // console.log('first array', snakeBody[0].x);
     }
@@ -112,7 +109,7 @@ function clearSnake() {
 
 
 //keep spawning even without eating - maybe take out the Math random from inside the function
-let foodSize = tileSize//15-5
+let foodSize = tileSize
 let foodXAxis = Math.floor(Math.random() * (numberOfTiles-1));
 let foodYAxis = Math.floor(Math.random() * (numberOfTiles-1));
 // let foodXAxis = Math.floor(Math.random() * numberOfTiles)
@@ -137,11 +134,21 @@ function ateFood() {
     // console.log(foodXAxis,foodYAxis)
 }
 
-
-
+//End the game after biting it's body accidentally/intentionally
+function endGame() {
+    for (let k=0; k < snakeBody.length; k++){ //snakeLength does not work here
+        //snakeBody.length is 2 but it doesnt work
+        // console.log(k) //works after putting into the gameLogic loop
+        if ((snakeBody[k].x === snakeHeadXAxis) && (snakeBody[k].y === snakeHeadYAxis)){
+            if (moveInDirX !== 0 || moveInDirY !== 0) { //to solve ending the game even though game havent start
+                console.log('You are dead')
+            }
+        }
+    }
+}
 
 //test -- remove functionality of scrolling with keyboard (from online)
-var keys = {};
+let keys = {};
 window.addEventListener("keydown",
     function(e){
         keys[e.keyCode] = true;
