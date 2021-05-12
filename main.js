@@ -168,3 +168,5 @@ gameLogic();
 //Lengthen the body of snake after eating
 //need to create an array for body and to make snake look like its moving, unshift and pop
 //Hit detection (against the wall) & (against own body)
+
+//test
