@@ -27,16 +27,23 @@ Javascript (Web APIs - DOM, event)
 To create a working snake game with scores
 
 # Things left to do
-Add snake body (i think it can be done with an array but not sure how to go about it yet. Possibly unshift the food x and y axis into the array)
+Add end game logic.
 
+Add logic for going through walls. (I think is a better challenge than dying when reaching the wall.)
 
 Add score functionality.
+
+Add 
+
+Add start screen. (Single player/Multiplayer(if added)).
+
+Add end screen. (Play again)
 
 Add more features.
 
 # Things fixed since first commit.
-Fixed window scrolling when clicking arrow down and arrow up button.
-
+Fixed window scrolling when clicking arrow down and arrow up button. (2nd commit)
+Added snake body. (3rd commit)
 
 # Might be added features
 Guards for food to prevent Snakey from stealing?

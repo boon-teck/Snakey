@@ -17,11 +17,10 @@ class SnakeBodyAxis {
     this.x = x;
     this.y = y;
 }}
-let snakeLength = 4;
+let snakeLength = 2;
 
 function gameLogic() { //move-drawhead-remove-delay doesnt work while remove-move-drawhead works)
     snakeMovement();
-
 
     clearSnake();
     spawnFood();
