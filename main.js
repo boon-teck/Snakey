@@ -1,4 +1,4 @@
-//startpage
+//startpage & endpage
 
 document.getElementById("start").addEventListener('click',startGame);
 document.getElementById("playagain").addEventListener('click',restartGame)
@@ -33,8 +33,7 @@ function home() {
     snakeBody = [];
 }
 
-/*game
-javacsript*/
+//game
 
 const canvas = document.getElementById('gameboard')
 const ctx = canvas.getContext('2d');
@@ -43,8 +42,9 @@ const ctx = canvas.getContext('2d');
 let numberOfTiles = 20;
 //size
 let tileSize = canvas.width/numberOfTiles // 600/30 = 20 width so 20 by 20 for a block
+
 //Attributes for snake game --- Position of snake  ----Speed of snake (can use object for this)
-let snakeHeadXAxis = 10; //go up to 600?
+let snakeHeadXAxis = 10;
 let snakeHeadYAxis = 10;
 let snakeSpeed = 5;
 let snakeBody = [];
@@ -65,10 +65,18 @@ function gameLogic() { //move-drawhead-remove-delay doesnt work while remove-mov
         document.querySelector('.endscreen').style.display = 'block';
         return; //use return stop gameLogic for some reason cant use break
     }
+    let wallLoseLogic = wallLose(); //L68-72 for losing on wall touch
+    if (wallLoseLogic === true){
+        document.querySelector('.endscreen').style.display = 'block';
+        return
+    }
     clearSnake();
     spawnFood();
     ateFood();
     createBody();  //DOES NOT WORK YET
+    // wallLogic();
+    console.log(snakeHeadXAxis)
+    // console.log(snakeHeadYAxis)
     snakeHead();
     //need to clear the snake trail here
     //spawnFood here -- keep spawning even without eating -- Need to invoke only once and invoke another time after eating
@@ -105,12 +113,45 @@ function createBody() {
 let moveInDirX = 0;
 let moveInDirY = 0;
 
+//wall logic for passing through
+function wallLogic() {
+    if (snakeHeadXAxis > 19){
+        snakeHeadXAxis = 0;
+    }
+    if (snakeHeadXAxis < 0){
+        snakeHeadXAxis = 20;
+    }
+    if (snakeHeadYAxis > 19){
+        snakeHeadYAxis = 1;
+    }
+    if (snakeHeadYAxis < 0){
+        snakeHeadYAxis = 20;
+    }
+}
+
+//wall logic for losing
+function wallLose() {
+    if (snakeHeadXAxis > 19){
+        return true;
+    }
+    if (snakeHeadXAxis < 0){
+        return true;
+    }
+    if (snakeHeadYAxis > 19){
+        return true;
+    }
+    if (snakeHeadYAxis < 0){
+        return true;
+    }
+}
+
+
 function snakeMovement() {
     snakeHeadXAxis += moveInDirX;
     snakeHeadYAxis += moveInDirY;
 }
 
-//for keyboard function --- Player 0 (keypress depreciated)
+//for keyboard function --- Player 0 (keypress deprecated)
 window.addEventListener('keydown', keyBoardEvent)
 function keyBoardEvent(key){
     //keycode.info

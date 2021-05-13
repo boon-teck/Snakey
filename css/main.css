@@ -83,6 +83,10 @@ body {
 .header {
   height: 40px;
 }
+.header div {
+  margin-left: 20px;
+  margin-top: 10px;
+}
 
 #gameboard {
   background-color: black;
