@@ -9,11 +9,54 @@
     <title>Snakey</title>
 </head>
 <body>
+
+<!--header-->
 <header class="header flexcon">
     <div>Snakey</div>
     <nav></nav>
 </header>
-<div class="flexcon board"><canvas id="gameboard" height="400" width="400" >Snakey Gameboard</canvas></div>
+<!-- score in progress-->
+<!--<div class="flexcon boxcontainer" style="display: none">-->
+<!--    <div class="scorebox">-->
+<!--        <p class="score">Score</p>-->
+<!--        <p class="scorenumber">0</p>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--Main page//working -->
+<!--<div class="board" style="display: none">-->
+<!--    <canvas id="gameboard" width="400" height="400" >Snakey Gameboard</canvas>-->
+<!--</div>-->
+
+
+<!--//test-->
+<div class="board">
+    <canvas id="gameboard" width="400" height="400" >Snakey Gameboard</canvas>
+    <div class="endscreen">
+        <div class="buttonscontainer flexcon">
+            <div class="button flexcon" id="home">Go home</div>
+            <div class="button flexcon" id="playagain">Play again</div>
+        </div>
+    </div>
+</div>
+
+
+<!--startpage-->
+<div class= "flexcon startpage" style="display: flex">
+    <div class="startpagecontainer">
+        <h1>Snakey</h1>
+        <div class= "button flexcon" id="start">Start</div>
+    </div>
+</div>
+
+<!--endscreen-->
+<!--<div class="endscreen">-->
+<!--    <div class="buttonscontainer flexcon">-->
+<!--    <div class="button flexcon" id="home">Go home</div>-->
+<!--    <div class="button flexcon" id="playagain">Play again</div>-->
+<!--    </div>-->
+<!--</div>-->
+
 </body>
 <script src="./main.js"></script>
 </html>

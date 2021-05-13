@@ -1,3 +1,41 @@
+//startpage
+
+document.getElementById("start").addEventListener('click',startGame);
+document.getElementById("playagain").addEventListener('click',restartGame)
+document.querySelector('#home').addEventListener('click',home)
+
+
+function startGame() {
+    document.querySelector('.startpage').style.display = 'none';
+    document.querySelector('.board').style.display = 'flex';
+    //invoke function for gameLogic
+    gameLogic();
+}
+
+function restartGame() {
+    document.querySelector('.endscreen').style.display = 'none';
+    document.querySelector('.board').style.display = 'flex';
+    snakeHeadXAxis = 10;
+    snakeHeadYAxis = 10;
+    snakeLength = 2;
+    snakeBody = [];
+
+    gameLogic();
+}
+
+function home() {
+    document.querySelector('.endscreen').style.display = 'none';
+    document.querySelector('.board').style.display = 'none';
+    document.querySelector('.startpage').style.display = 'flex';
+    snakeHeadXAxis = 10;
+    snakeHeadYAxis = 10;
+    snakeLength = 2;
+    snakeBody = [];
+}
+
+/*game
+javacsript*/
+
 const canvas = document.getElementById('gameboard')
 const ctx = canvas.getContext('2d');
 
@@ -5,11 +43,12 @@ const ctx = canvas.getContext('2d');
 let numberOfTiles = 20;
 //size
 let tileSize = canvas.width/numberOfTiles // 600/30 = 20 width so 20 by 20 for a block
-//Attributes for snake game --- Position of snake  ----Speed of snake
+//Attributes for snake game --- Position of snake  ----Speed of snake (can use object for this)
 let snakeHeadXAxis = 10; //go up to 600?
 let snakeHeadYAxis = 10;
 let snakeSpeed = 5;
 let snakeBody = [];
+let snakeLength = 2;
 
 //my object is here
 class SnakeBodyAxis {
@@ -17,12 +56,13 @@ class SnakeBodyAxis {
     this.x = x;
     this.y = y;
 }}
-let snakeLength = 2;
+
 
 function gameLogic() { //move-drawhead-remove-delay doesnt work while remove-move-drawhead works)
     snakeMovement();
     let end = endGame()
     if (end  === true){
+        document.querySelector('.endscreen').style.display = 'block';
         return; //use return stop gameLogic for some reason cant use break
     }
     clearSnake();
@@ -30,7 +70,6 @@ function gameLogic() { //move-drawhead-remove-delay doesnt work while remove-mov
     ateFood();
     createBody();  //DOES NOT WORK YET
     snakeHead();
-
     //need to clear the snake trail here
     //spawnFood here -- keep spawning even without eating -- Need to invoke only once and invoke another time after eating
 
@@ -39,13 +78,13 @@ function gameLogic() { //move-drawhead-remove-delay doesnt work while remove-mov
 
 //Draw SnakeHead
 function snakeHead() {
-    ctx.fillStyle = 'red';
+    ctx.fillStyle = '#a86aa4';
     ctx.fillRect(snakeHeadXAxis*numberOfTiles, snakeHeadYAxis*numberOfTiles, tileSize, tileSize)
 }
 
 
 function createBody() {
-    ctx.fillStyle = 'blue';
+    ctx.fillStyle = '#7b5fac';
     let snakeSectionObj = new SnakeBodyAxis(snakeHeadXAxis, snakeHeadYAxis)//An object of old axis
     //for length of array, draw rect when I move it
     for (let j=0; j < snakeBody.length; j++) {//snake length accessing the array of object
@@ -122,7 +161,7 @@ let foodYAxis = Math.floor(Math.random() * (numberOfTiles-1));
 
 
 function spawnFood() {
-    ctx.fillStyle = 'Orange';
+    ctx.fillStyle = '#f7c978';
     ctx.fillRect(foodXAxis*numberOfTiles,foodYAxis*numberOfTiles, foodSize, foodSize)
 }
 
@@ -144,12 +183,17 @@ function endGame() {
         // console.log(k) //works after putting into the gameLogic loop
         if ((snakeBody[k].x === snakeHeadXAxis) && (snakeBody[k].y === snakeHeadYAxis)){
             if (moveInDirX !== 0 || moveInDirY !== 0) { //to solve ending the game even though game havent start
-                console.log('You are dead')
+                console.log('You are dead') //test
                 return true
             }
         }
     }
 }
+
+//works
+// document.querySelector('.endscreen').style.display = 'block'
+
+
 
 //test -- remove functionality of scrolling with keyboard (from online)
 let keys = {};
@@ -170,16 +214,16 @@ window.addEventListener('keyup',
     false);
 
 
-//invoke function for gameLogic
-gameLogic();
+
 
 //To do
 //NEW PROBLEM???!!! why am i moving across y axis faster than x axis even if width height the same
 //Spawning a food (Canvas cannot add picture apparently)
 //Lengthen the body of snake after eating
 //need to create an array for body and to make snake look like its moving, unshift and pop
-//Hit detection (against the wall) & (against own body)
-
+//Hit detection (against own body)
+//Switching webpage
 //bugs to fix
 //hitting left and right quickly will cause the snake to go back into its own body
 //food spawning in the snake body - need logic to prevent that
+

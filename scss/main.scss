@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 * {
   height: 100%;
   //to remove border
@@ -6,15 +8,67 @@
 }
 body {
   background: linear-gradient(to top, #3f51b1 0%, #5a55ae 13%, #7b5fac 25%, #8f6aae 38%, #a86aa4 50%, #cc6b8e 62%, #f18271 75%, #f3a469 87%, #f7c978 100%) fixed no-repeat;
+  font-family: 'Press Start 2P', cursive;
   //background: -webkit-linear-gradient(to top, #3f51b1 0%, #5a55ae 13%, #7b5fac 25%, #8f6aae 38%, #a86aa4 50%, #cc6b8e 62%, #f18271 75%, #f3a469 87%, #f7c978 100%) no-repeat fixed;
 }
 
 .flexcon {
   display: flex;
-  &.board{
+  &.startpage {
     justify-content: center;
+    align-items: center;
+  }
+  &.header{
+    justify-content: space-between;
+  }
+  &.endscreen{
+    justify-content: center;
+    align-items: center;
   }
 }
+
+.board {
+  display: none;
+}
+
+.startpagecontainer{
+  height: 200px;
+  h1 {
+    height: 69px;
+  }
+}
+
+.button {
+  border: solid 1px black;
+  height: 40px;
+  border-radius: 20px;
+  &#start{
+    justify-content: center;
+    align-items: center;
+  }
+  &#playagain{
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+    background-color: #cc6b8e;
+  }
+  &#home{
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+    background-color: #cc6b8e;
+  }
+  &:hover {
+    background-color: #7b5fac;
+  }
+  &#home:hover {
+    background-color: #7b5fac;
+  }
+  &#playagain:hover {
+    background-color: #7b5fac;
+  }
+}
+
 
 .gridcon{
   display: grid;
@@ -33,35 +87,20 @@ body {
   height: 40px;
 }
 
-@keyframes snakeMovement {
-  //0% {
-  //  transform: translateX(10px);
-  //}
-  //50% {
-  //  transform: translateX(10px);
-  //}
-  //100% {
-  //  transform: translateX(10px);
-  //}
-  from {transform: scaleX(0);}
-  to {transform: scaleX(1);}
-}
-
-#snakey {
-  height: 15px;
-  width: 15px;
-  background-color: red;
-  position: absolute;
-  //animation: snakeMovement linear;
-  transition: transform 1s linear;
-}
-
-#snakey:hover {
-  transform: translateX(100px);
-}
 
 #gameboard {
   background-color: black;
   width: 600px;
   height: 600px;
+  margin: auto;
 }
+
+.endscreen {
+  position: absolute;
+  left: 50%;
+  margin-left: -154px;
+  top: 50%;
+  //top: 350px;
+  display: none;
+}
+

@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
 * {
   height: 100%;
   border: 0;
@@ -6,13 +7,64 @@
 
 body {
   background: linear-gradient(to top, #3f51b1 0%, #5a55ae 13%, #7b5fac 25%, #8f6aae 38%, #a86aa4 50%, #cc6b8e 62%, #f18271 75%, #f3a469 87%, #f7c978 100%) fixed no-repeat;
+  font-family: "Press Start 2P", cursive;
 }
 
 .flexcon {
   display: flex;
 }
-.flexcon.board {
+.flexcon.startpage {
   justify-content: center;
+  align-items: center;
+}
+.flexcon.header {
+  justify-content: space-between;
+}
+.flexcon.endscreen {
+  justify-content: center;
+  align-items: center;
+}
+
+.board {
+  display: none;
+}
+
+.startpagecontainer {
+  height: 200px;
+}
+.startpagecontainer h1 {
+  height: 69px;
+}
+
+.button {
+  border: solid 1px black;
+  height: 40px;
+  border-radius: 20px;
+}
+.button#start {
+  justify-content: center;
+  align-items: center;
+}
+.button#playagain {
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  background-color: #cc6b8e;
+}
+.button#home {
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  background-color: #cc6b8e;
+}
+.button:hover {
+  background-color: #7b5fac;
+}
+.button#home:hover {
+  background-color: #7b5fac;
+}
+.button#playagain:hover {
+  background-color: #7b5fac;
 }
 
 .gridcon {
@@ -32,30 +84,19 @@ body {
   height: 40px;
 }
 
-@keyframes snakeMovement {
-  from {
-    transform: scaleX(0);
-  }
-  to {
-    transform: scaleX(1);
-  }
-}
-#snakey {
-  height: 15px;
-  width: 15px;
-  background-color: red;
-  position: absolute;
-  transition: transform 1s linear;
-}
-
-#snakey:hover {
-  transform: translateX(100px);
-}
-
 #gameboard {
   background-color: black;
   width: 600px;
   height: 600px;
+  margin: auto;
+}
+
+.endscreen {
+  position: absolute;
+  left: 50%;
+  margin-left: -154px;
+  top: 50%;
+  display: none;
 }
 
 /*# sourceMappingURL=main.css.map */
