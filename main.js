@@ -21,7 +21,10 @@ let snakeLength = 2;
 
 function gameLogic() { //move-drawhead-remove-delay doesnt work while remove-move-drawhead works)
     snakeMovement();
-    endGame();
+    let end = endGame()
+    if (end  === true){
+        return; //use return stop gameLogic for some reason cant use break
+    }
     clearSnake();
     spawnFood();
     ateFood();
@@ -142,6 +145,7 @@ function endGame() {
         if ((snakeBody[k].x === snakeHeadXAxis) && (snakeBody[k].y === snakeHeadYAxis)){
             if (moveInDirX !== 0 || moveInDirY !== 0) { //to solve ending the game even though game havent start
                 console.log('You are dead')
+                return true
             }
         }
     }
@@ -176,4 +180,6 @@ gameLogic();
 //need to create an array for body and to make snake look like its moving, unshift and pop
 //Hit detection (against the wall) & (against own body)
 
-//test
+//bugs to fix
+//hitting left and right quickly will cause the snake to go back into its own body
+//food spawning in the snake body - need logic to prevent that
