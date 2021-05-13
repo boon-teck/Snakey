@@ -1,19 +1,15 @@
 # Snakey
-Revitalising a retro snake game on Nokia phones.
+Revitalising a retro competitive snake game into a game meant for chilling and deep thoughts.
 
 
 # Gameplay
 I'm sure this needs no introduction but just in case:
 
-  Hunt the randomly generated food as a snake.
+  Hunt the randomly generated "rays of joy" as a Snakey.
 
   Control the gameplay with the arrow keys.
 
-  The more food you eat, the higher points you get.
-
   Game ends when you crash into yourself.
-
-  Beat the highscore and get on the leaderboard.
 
 # Technologies employed
 
@@ -24,28 +20,25 @@ CSS (SASS)
 Javascript (Web APIs - DOM, event)
 
 # MVP
-To create a working snake game with scores
+To create a working snake game.
 
 # Things left to do
-Add end game logic.
-
 Add logic for going through walls. (I think is a better challenge than dying when reaching the wall.)
 
-Add score functionality.
+Add score functionality. (Might not since this is a chilling game)
 
-Add 
-
-Add start screen. (Single player/Multiplayer(if added)).
-
-Add end screen. (Play again)
-
-Add more features.
+Add more features. (Refer to might be added features)
 
 # Things fixed since first commit.
 Fixed window scrolling when clicking arrow down and arrow up button. (2nd commit)
+
 Added snake body. (3rd commit)
 
+Added working snake body
+
 # Might be added features
+Option to choose the colour of Snakey.
+
 Guards for food to prevent Snakey from stealing?
 
 Multiplayer.
