@@ -3,6 +3,7 @@
   height: 100%;
   border: 0;
   margin: 0;
+  cursor: url("../images/snake2.png"), auto;
 }
 
 body {
@@ -44,18 +45,21 @@ body {
 .button#start {
   justify-content: center;
   align-items: center;
+  cursor: url("../images/snake1.png"), pointer;
 }
 .button#playagain {
   justify-content: center;
   align-items: center;
   padding: 0.5rem;
   background-color: #cc6b8e;
+  cursor: url("../images/snake1.png"), pointer;
 }
 .button#home {
   justify-content: center;
   align-items: center;
   padding: 0.5rem;
   background-color: #cc6b8e;
+  cursor: url("../images/snake1.png"), pointer;
 }
 .button:hover {
   background-color: #7b5fac;

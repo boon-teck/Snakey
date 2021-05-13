@@ -49,6 +49,9 @@ let snakeHeadYAxis = 10;
 let snakeSpeed = 5;
 let snakeBody = [];
 let snakeLength = 2;
+//sound
+let loseGame = new Audio("audio/bangwall.wav");
+let eatSound = new Audio("audio/bling.wav");
 
 //my object is here
 class SnakeBodyAxis {
@@ -63,11 +66,13 @@ function gameLogic() { //move-drawhead-remove-delay doesnt work while remove-mov
     let end = endGame()
     if (end  === true){
         document.querySelector('.endscreen').style.display = 'block';
+        loseGame.play()
         return; //use return stop gameLogic for some reason cant use break
     }
     let wallLoseLogic = wallLose(); //L68-72 for losing on wall touch
     if (wallLoseLogic === true){
         document.querySelector('.endscreen').style.display = 'block';
+        loseGame.play()
         return
     }
     clearSnake();
@@ -208,6 +213,7 @@ function spawnFood() {
 
 function ateFood() {
     if ((snakeHeadXAxis === foodXAxis) && (snakeHeadYAxis === foodYAxis)) {
+        eatSound.play();
         // spawnFood() //doesnt work
         foodXAxis = Math.floor(Math.random() * (numberOfTiles-1)) //1-29 tiles
         foodYAxis = Math.floor(Math.random() * (numberOfTiles-1))
@@ -230,10 +236,6 @@ function endGame() {
         }
     }
 }
-
-//works
-// document.querySelector('.endscreen').style.display = 'block'
-
 
 
 //test -- remove functionality of scrolling with keyboard (from online)
