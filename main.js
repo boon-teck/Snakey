@@ -8,6 +8,8 @@ document.querySelector('#home').addEventListener('click',home)
 function startGame() {
     document.querySelector('.startpage').style.display = 'none';
     document.querySelector('.board').style.display = 'flex';
+    backgroundSound.play();
+    backgroundSound.loop = true;
     //invoke function for gameLogic
     gameLogic();
 }
@@ -31,9 +33,10 @@ function home() {
     snakeHeadYAxis = 10;
     snakeLength = 2;
     snakeBody = [];
+    backgroundSound.pause();
 }
 
-//game
+//game --- Create canvas and game element
 
 const canvas = document.getElementById('gameboard')
 const ctx = canvas.getContext('2d');
@@ -52,6 +55,9 @@ let snakeLength = 2;
 //sound
 let loseGame = new Audio("audio/bangwall.wav");
 let eatSound = new Audio("audio/bling.wav");
+
+//changes from here
+let backgroundSound = new Audio("audio/background.mp3");
 
 //my object is here
 class SnakeBodyAxis {
